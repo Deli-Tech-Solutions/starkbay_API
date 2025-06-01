@@ -5,6 +5,9 @@ import { AppService } from './app.service';
 import { CouponsModule } from './coupons/coupons.module';
 import { Coupon } from './coupons/entities/coupon.entity';
 import { CouponUsage } from './coupons/entities/coupon-usage.entity';
+import { ScheduleModule } from '@nestjs/schedule';
+import { IndexingModule } from './modules/indexing/indexing.module';
+import { getDatabaseConfig } from './config/database.config';
 
 @Module({
   imports: [
@@ -19,6 +22,8 @@ import { CouponUsage } from './coupons/entities/coupon-usage.entity';
       synchronize: process.env.NODE_ENV !== 'production',
     }),
     CouponsModule,
+    ScheduleModule.forRoot(),
+    IndexingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
