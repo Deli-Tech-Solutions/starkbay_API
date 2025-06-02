@@ -8,6 +8,7 @@ import { CouponUsage } from './coupons/entities/coupon-usage.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { IndexingModule } from './modules/indexing/indexing.module';
 import { getDatabaseConfig } from './config/database.config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { getDatabaseConfig } from './config/database.config';
     CouponsModule,
     ScheduleModule.forRoot(),
     IndexingModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
