@@ -11,6 +11,10 @@ import { getDatabaseConfig } from './config/database.config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TransactionModule } from './transaction/transaction.module';
+import { RateLimitingModule } from './rate-limiting/rate-limiting.module';
+import rateLimitConfig from './config/rate-limit.config';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
@@ -23,6 +27,8 @@ import { TransactionModule } from './transaction/transaction.module';
       database: process.env.DB_DATABASE || 'starkbay',
       entities: [Coupon, CouponUsage],
       synchronize: process.env.NODE_ENV !== 'production',
+      load: [rateLimitConfig],
+
     }),
     CouponsModule,
     ScheduleModule.forRoot(),
@@ -30,6 +36,9 @@ import { TransactionModule } from './transaction/transaction.module';
     UsersModule,
     AuthModule,
     TransactionModule,
+    RateLimitingModule,
+    ConfigModule.forRoot({
+        })
   ],
   controllers: [AppController],
   providers: [AppService],
