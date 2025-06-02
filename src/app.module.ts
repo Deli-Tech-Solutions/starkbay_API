@@ -8,6 +8,9 @@ import { CouponUsage } from './coupons/entities/coupon-usage.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { IndexingModule } from './modules/indexing/indexing.module';
 import { getDatabaseConfig } from './config/database.config';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { TransactionModule } from './transaction/transaction.module';
 import { RateLimitingModule } from './rate-limiting/rate-limiting.module';
 import rateLimitConfig from './config/rate-limit.config';
 import { ConfigModule } from '@nestjs/config';
@@ -30,9 +33,13 @@ import { ConfigModule } from '@nestjs/config';
     CouponsModule,
     ScheduleModule.forRoot(),
     IndexingModule,
+    UsersModule,
+    AuthModule,
+    TransactionModule,
     RateLimitingModule,
     ConfigModule.forRoot({
-        })],
+        })
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
