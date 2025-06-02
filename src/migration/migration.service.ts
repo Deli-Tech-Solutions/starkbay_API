@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource, QueryRunner } from 'typeorm';
-import { SchemaVersion } from '../entities/schema-version.entity';
+import { SchemaVersion } from '../notification/entities/schema-version.entity';
 
 export interface MigrationInfo {
   name: string;
