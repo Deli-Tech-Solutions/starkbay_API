@@ -35,6 +35,8 @@ import { ConfigModule } from '@nestjs/config';
     IndexingModule,
     UsersModule,
     AuthModule,
+    RateLimitingModule,
+    ConfigModule.forRoot({})
     TransactionModule,
     RateLimitingModule,
     ConfigModule.forRoot({
