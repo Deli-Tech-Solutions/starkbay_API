@@ -10,6 +10,10 @@ import { IndexingModule } from './modules/indexing/indexing.module';
 import { getDatabaseConfig } from './config/database.config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { RateLimitingModule } from './rate-limiting/rate-limiting.module';
+import rateLimitConfig from './config/rate-limit.config';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
@@ -22,12 +26,16 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DB_DATABASE || 'starkbay',
       entities: [Coupon, CouponUsage],
       synchronize: process.env.NODE_ENV !== 'production',
+      load: [rateLimitConfig],
+
     }),
     CouponsModule,
     ScheduleModule.forRoot(),
     IndexingModule,
     UsersModule,
     AuthModule,
+    RateLimitingModule,
+    ConfigModule.forRoot({})
   ],
   controllers: [AppController],
   providers: [AppService],
