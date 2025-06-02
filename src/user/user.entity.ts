@@ -24,4 +24,23 @@ export class User {
 
   @OneToMany(() => ReviewVote, (vote) => vote.user)
   reviewVotes: ReviewVote[];
+/* eslint-disable prettier/prettier */
+// Directory: src/users/user.entity.ts
+
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  name: string;
+
+  @Column({ default: true })
+  isActive: boolean;
+  wishlist: any;
 }
