@@ -10,6 +10,7 @@ import { IndexingModule } from './modules/indexing/indexing.module';
 import { getDatabaseConfig } from './config/database.config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AuthModule } from './auth/auth.module';
     IndexingModule,
     UsersModule,
     AuthModule,
+    TransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

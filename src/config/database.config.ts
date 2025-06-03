@@ -1,7 +1,9 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 
-export const getDatabaseConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
+export const getDatabaseConfig = (
+  configService: ConfigService,
+): TypeOrmModuleOptions => ({
   type: 'postgres',
   host: configService.get<string>('DB_HOST', 'localhost'),
   port: configService.get<number>('DB_PORT', 5432),
@@ -24,5 +26,10 @@ export const getDatabaseConfig = (configService: ConfigService): TypeOrmModuleOp
     // Enable prepared statements for better performance
     statement_timeout: configService.get<number>('DB_STATEMENT_TIMEOUT', 30000),
     query_timeout: configService.get<number>('DB_QUERY_TIMEOUT', 30000),
+    connectionLimit: 10,
+    acquireTimeout: 60000,
+    timeout: 60000,
+    // Enable deadlock detection
+    enableArithAbort: true,
   },
 });
