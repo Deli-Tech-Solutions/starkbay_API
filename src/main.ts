@@ -3,10 +3,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { VersionMiddleware } from './common/middleware/version.middleware';
-import { DeprecationInterceptor} from './common/interceptors/deprecation.interceptor';
+import { DeprecationInterceptor } from './common/interceptors/deprecation.interceptor';
+import { WinstonModule } from 'nest-winston';
+import { winstonLoggerOptions } from './logger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: WinstonModule.createLogger(winstonLoggerOptions),
+  });
 
   app.use(VersionMiddleware);
   app.setGlobalPrefix('api');
