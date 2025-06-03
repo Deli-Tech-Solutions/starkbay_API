@@ -2,6 +2,8 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
+📘 [Migration Guide: v1 ➡ v2](docs/migration/v1-to-v2.md)
+
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
@@ -96,3 +98,205 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+```
+starkbay_API
+├─ .prettierrc
+├─ eslint.config.mjs
+├─ nest-cli.json
+├─ package-lock.json
+├─ package.json
+├─ README.md
+├─ src
+│  ├─ analytics
+│  │  ├─ analytics.controller.ts
+│  │  ├─ analytics.module.ts
+│  │  ├─ analytics.service.ts
+│  │  ├─ customer-behavior
+│  │  │  └─ behavior.service.ts
+│  │  ├─ dashboard
+│  │  │  └─ dashboard.controller.ts
+│  │  ├─ dto
+│  │  │  └─ event.dto.ts
+│  │  ├─ events
+│  │  │  ├─ event.entity.ts
+│  │  │  └─ event.service.ts
+│  │  ├─ product-performance
+│  │  │  └─ product-metrics.service.ts
+│  │  └─ sales
+│  │     └─ sales-metrics.service.ts
+│  ├─ app.controller.spec.ts
+│  ├─ app.controller.ts
+│  ├─ app.module.ts
+│  ├─ app.service.ts
+│  ├─ auth
+│  │  ├─ decorators
+│  │  │  └─ current-user.decorator.ts
+│  │  └─ guards
+│  │     ├─ admin.guard.ts
+│  │     └─ jwt-auth.guard.ts
+│  ├─ config
+│  │  └─ database.config.ts
+│  ├─ content
+│  │  ├─ content.controller.ts
+│  │  ├─ content.module.ts
+│  │  ├─ content.service.ts
+│  │  ├─ dto
+│  │  │  ├─ content-query.dto.ts
+│  │  │  ├─ create-content.dto.ts
+│  │  │  └─ update-content.dto.ts
+│  │  ├─ entities
+│  │  │  ├─ content-analytics.entity.ts
+│  │  │  ├─ content-category.entity.ts
+│  │  │  ├─ content-tag.entity.ts
+│  │  │  └─ content.entity.ts
+│  │  └─ enums
+│  │     └─ content.enums.ts
+│  ├─ coupons
+│  │  ├─ coupons.controller.ts
+│  │  ├─ coupons.module.ts
+│  │  ├─ coupons.service.ts
+│  │  ├─ dto
+│  │  │  └─ create-coupon.dto.ts
+│  │  └─ entities
+│  │     ├─ coupon-usage.entity.ts
+│  │     └─ coupon.entity.ts
+│  ├─ events
+│  │  ├─ controllers
+│  │  │  └─ events.controller.ts
+│  │  ├─ decorators
+│  │  │  ├─ event-handler.decorator.ts
+│  │  │  └─ event-subscriber.decorator.ts
+│  │  ├─ entities
+│  │  │  └─ event-store.entity.ts
+│  │  ├─ events.module.ts
+│  │  ├─ services
+│  │  │  ├─ event-emitter.service.ts
+│  │  │  ├─ event-monitoring.service.ts
+│  │  │  ├─ event-replay.service.ts
+│  │  │  ├─ event-store.service.ts
+│  │  │  └─ event-subscriber.service.ts
+│  │  ├─ types
+│  │  │  └─ event.types.ts
+│  │  └─ validators
+│  │     └─ event-payload.validator.ts
+│  ├─ indexing-strategy
+│  │  ├─ controllers
+│  │  │  └─ index-admin.controller.ts
+│  │  ├─ decorators
+│  │  │  └─ index-monitoring.decorator.ts
+│  │  ├─ dto
+│  │  │  └─ index.dto.ts
+│  │  ├─ entities
+│  │  │  └─ indexing-strategy.entity.ts
+│  │  ├─ indexing-strategy.controller.spec.ts
+│  │  ├─ indexing-strategy.controller.ts
+│  │  ├─ indexing-strategy.module.ts
+│  │  ├─ indexing-strategy.service.spec.ts
+│  │  ├─ indexing-strategy.service.ts
+│  │  ├─ interceptors
+│  │  │  └─ query-performance.interceptor.ts
+│  │  ├─ interfaces
+│  │  │  └─ index.interface.ts
+│  │  ├─ services
+│  │  │  ├─ index-maintenance.service.ts
+│  │  │  ├─ index-management.service.ts
+│  │  │  ├─ index-monitoring.service.ts
+│  │  │  ├─ index-suggestion.service.ts
+│  │  │  ├─ performance-alerts.service.ts
+│  │  │  └─ query-analysis.service.ts
+│  │  └─ utils
+│  │     └─ query-parser.util.ts
+│  ├─ main.ts
+│  ├─ management
+│  │  └─ entities
+│  │     ├─ dto
+│  │     │  ├─ create-order.dto.ts
+│  │     │  ├─ order.controller.ts
+│  │     │  ├─ order.module.ts
+│  │     │  └─ order.service.ts
+│  │     └─ order.entity.ts
+│  ├─ migration
+│  │  ├─ 1703123456789-CreateUserTable.ts
+│  │  ├─ migration-dependency.service.ts
+│  │  ├─ migration-test.service.ts
+│  │  ├─ migration.controller.ts
+│  │  ├─ migration.module.ts
+│  │  ├─ migration.service.ts
+│  │  └─ test
+│  │     ├─ migration-setup.ts
+│  │     ├─ migration.utils.ts
+│  │     └─ migrations
+│  │        ├─ 1703123456790-AddUserProfile.ts
+│  │        ├─ CreateUserTable.migration.spec.ts
+│  │        └─ scripts
+│  │           └─ ci-migration-check.ts
+│  ├─ migrations
+│  │  └─ 001-enable-pg-stat-statements.sql
+│  ├─ order
+│  │  ├─ entities
+│  │  │  ├─ order-item.entity.ts
+│  │  │  └─ order.entity.ts
+│  │  └─ order.service.ts
+│  ├─ product
+│  │  └─ product.entity.ts
+│  ├─ review
+│  │  ├─ dto
+│  │  │  ├─ create-review.dto.ts
+│  │  │  ├─ moderate-review.dto.ts
+│  │  │  ├─ review-query.dto.ts
+│  │  │  ├─ update-review.dto.ts
+│  │  │  └─ vote-review.dto.ts
+│  │  ├─ entities
+│  │  │  ├─ product-rating.entity.ts
+│  │  │  ├─ review-vote.entity.ts
+│  │  │  └─ review.entity.ts
+│  │  ├─ review.controller.ts
+│  │  ├─ review.module.ts
+│  │  ├─ review.service.ts
+│  │  └─ services
+│  │     └─ moderation.service.ts
+│  ├─ tax
+│  │  ├─ controllers
+│  │  │  ├─ report.controller.ts
+│  │  │  └─ tax.controller.ts
+│  │  ├─ dto
+│  │  │  └─ calculate-tax.dto.ts
+│  │  ├─ entities
+│  │  │  ├─ jurisdiction.entity.ts
+│  │  │  ├─ product-category.entity.ts
+│  │  │  ├─ tax-exemption.entity.ts
+│  │  │  ├─ tax-transaction.entity.ts
+│  │  │  └─ tax.entity.ts
+│  │  ├─ services
+│  │  │  ├─ exemption.service.ts
+│  │  │  ├─ tax-report.service.ts
+│  │  │  └─ tax.service.ts
+│  │  └─ shared
+│  │     └─ base.entity.ts
+│  ├─ user
+│  │  └─ user.entity.ts
+│  ├─ wishlist
+│  │  ├─ dto
+│  │  │  ├─ add-to-wishlist.dto.ts
+│  │  │  ├─ move-to-cart.dto.ts
+│  │  │  └─ remove-from-wishlist.dto.ts
+│  │  ├─ entities
+│  │  │  └─ wishlist.entity.ts
+│  │  ├─ wishlist.controller.ts
+│  │  └─ wishlist.service.ts
+│  └─ workflow
+│     ├─ dto
+│     │  └─ approval.dto.ts
+│     ├─ entities
+│     │  └─ content-approval.entity.ts
+│     ├─ workflow.controller.ts
+│     ├─ workflow.module.ts
+│     └─ workflow.service.ts
+├─ test
+│  ├─ app.e2e-spec.ts
+│  └─ jest-e2e.json
+├─ tsconfig.build.json
+└─ tsconfig.json
+
+```

@@ -4,7 +4,7 @@ import { MigrationService } from './migration.service';
 import { MigrationTestService } from './migration-test.service';
 import { MigrationDependencyService } from './migration-dependency.service';
 import { MigrationController } from './migration.controller';
-import { SchemaVersion } from '../entities/schema-version.entity';
+import { SchemaVersion } from '../notification/entities/schema-version.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([SchemaVersion])],

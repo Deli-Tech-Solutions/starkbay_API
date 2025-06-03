@@ -8,7 +8,14 @@ import { CouponUsage } from './coupons/entities/coupon-usage.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { IndexingModule } from './modules/indexing/indexing.module';
 import { getDatabaseConfig } from './config/database.config';
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { TransactionModule } from './transaction/transaction.module';
+import { RateLimitingModule } from './rate-limiting/rate-limiting.module';
+import rateLimitConfig from './config/rate-limit.config';
+import { ConfigModule } from '@nestjs/config';
+import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
+
 
 @Module({
   imports: [
@@ -21,11 +28,21 @@ import { UserModule } from './user/user.module';
       database: process.env.DB_DATABASE || 'starkbay',
       entities: [Coupon, CouponUsage],
       synchronize: process.env.NODE_ENV !== 'production',
+      load: [rateLimitConfig],
+
     }),
     CouponsModule,
     ScheduleModule.forRoot(),
     IndexingModule,
-    UserModule,
+    UsersModule,
+    AuthModule,
+    RateLimitingModule,
+    ConfigModule.forRoot({})
+    TransactionModule,
+    RateLimitingModule,
+    ConfigModule.forRoot({
+        }),
+    InventoryAlertModule
   ],
   controllers: [AppController],
   providers: [AppService],
