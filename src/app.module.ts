@@ -14,6 +14,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { RateLimitingModule } from './rate-limiting/rate-limiting.module';
 import rateLimitConfig from './config/rate-limit.config';
 import { ConfigModule } from '@nestjs/config';
+import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
 
 
 @Module({
@@ -40,7 +41,8 @@ import { ConfigModule } from '@nestjs/config';
     TransactionModule,
     RateLimitingModule,
     ConfigModule.forRoot({
-        })
+        }),
+    InventoryAlertModule
   ],
   controllers: [AppController],
   providers: [AppService],
