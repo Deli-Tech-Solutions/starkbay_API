@@ -15,7 +15,9 @@ import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { Subscription } from './subscription/subscription.entity';
 import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
-
+import { PrometheusModule } from '@willsoto/nestjs-prometheus';
+import { SentryModule } from '@ntegral/nestjs-sentry';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
@@ -28,6 +30,7 @@ import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
       database: process.env.DB_DATABASE || 'starkbay',
       entities: [Coupon, CouponUsage, Subscription],
       synchronize: process.env.NODE_ENV !== 'production',
+      load: [rateLimitConfig],
     }),
     CouponsModule,
     ScheduleModule.forRoot(),
@@ -38,9 +41,14 @@ import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
     TransactionModule,
     SubscriptionModule,
     RateLimitingModule,
-    ConfigModule.forRoot({
-        }),
-    InventoryAlertModule
+    ConfigModule.forRoot({}),
+    InventoryAlertModule,
+    PrometheusModule.register(),
+    SentryModule.forRoot({
+      dsn: process.env.SENTRY_DSN,
+      environment: process.env.NODE_ENV,
+    }),
+    TerminusModule
   ],
   controllers: [AppController],
   providers: [AppService],
