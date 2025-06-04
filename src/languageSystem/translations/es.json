@@ -1,0 +1,85 @@
+{
+  "common": {
+    "hello": "Hola",
+    "goodbye": "Adiós",
+    "welcome": "Bienvenido",
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "export": "Exportar",
+    "import": "Importar"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "services": "Servicios",
+    "products": "Productos",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión"
+  },
+  "forms": {
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "phone": "Teléfono",
+    "address": "Dirección",
+    "city": "Ciudad",
+    "country": "País",
+    "zipCode": "Código postal",
+    "submit": "Enviar",
+    "reset": "Restablecer"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email": "Por favor ingrese un email válido",
+    "minLength": "La longitud mínima es {{min}} caracteres",
+    "maxLength": "La longitud máxima es {{max}} caracteres",
+    "min": "El valor mínimo es {{min}}",
+    "max": "El valor máximo es {{max}}",
+    "pattern": "Formato inválido",
+    "failed": "Validación fallida"
+  },
+  "messages": {
+    "item": {
+      "zero": "Sin elementos",
+      "one": "{{count}} elemento",
+      "other": "{{count}} elementos"
+    },
+    "notification": {
+      "zero": "Sin notificaciones",
+      "one": "{{count}} notificación",
+      "other": "{{count}} notificaciones"
+    }
+  },
+  "errors": {
+    "notFound": "No encontrado",
+    "unauthorized": "No autorizado",
+    "forbidden": "Prohibido",
+    "serverError": "Error interno del servidor",
+    "networkError": "Error de red",
+    "timeout": "Tiempo de espera agotado"
+  },
+  "date": {
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "tomorrow": "Mañana",
+    "thisWeek": "Esta semana",
+    "thisMonth": "Este mes",
+    "thisYear": "Este año"
+  }
+}
