@@ -14,6 +14,7 @@ import rateLimitConfig from './config/rate-limit.config';
 import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { Subscription } from './subscription/subscription.entity';
+import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
 
 
 @Module({
@@ -36,6 +37,10 @@ import { Subscription } from './subscription/subscription.entity';
     ConfigModule.forRoot({}),
     TransactionModule,
     SubscriptionModule,
+    RateLimitingModule,
+    ConfigModule.forRoot({
+        }),
+    InventoryAlertModule
   ],
   controllers: [AppController],
   providers: [AppService],
