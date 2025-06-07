@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CouponsModule } from './coupons/coupons.module';
@@ -11,7 +12,6 @@ import { AuthModule } from './auth/auth.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { RateLimitingModule } from './rate-limiting/rate-limiting.module';
 import rateLimitConfig from './config/rate-limit.config';
-import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { Subscription } from './subscription/subscription.entity';
 import { InventoryAlertModule } from './inventory-alert/inventory-alert.module';
@@ -21,6 +21,11 @@ import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [rateLimitConfig],
+      envFilePath: ['.env.local', '.env'],
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST || 'localhost',
@@ -30,18 +35,17 @@ import { TerminusModule } from '@nestjs/terminus';
       database: process.env.DB_DATABASE || 'starkbay',
       entities: [Coupon, CouponUsage, Subscription],
       synchronize: process.env.NODE_ENV !== 'production',
-      load: [rateLimitConfig],
+      migrations: ['dist/migrations/*.js'],
+      migrationsRun: process.env.NODE_ENV === 'production',
+      logging: process.env.NODE_ENV !== 'production',
     }),
     CouponsModule,
     ScheduleModule.forRoot(),
     UsersModule,
     AuthModule,
     RateLimitingModule,
-    ConfigModule.forRoot({}),
     TransactionModule,
     SubscriptionModule,
-    RateLimitingModule,
-    ConfigModule.forRoot({}),
     InventoryAlertModule,
     PrometheusModule.register(),
     SentryModule.forRoot({
@@ -53,4 +57,4 @@ import { TerminusModule } from '@nestjs/terminus';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
